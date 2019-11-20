@@ -1,0 +1,46 @@
+.AppBg{
+  background-color: #e7e7eb;
+  height:100vh;
+  width: 100%;
+}
+
+.App{
+  background-color: #3f3160;
+  min-height:100%;
+  width: 100%;
+}
+
+.Recentsearch{
+  background-color: rgb(196, 197, 196);
+  width: 100%;
+  height: 100%;
+}
+
+#to-do-form input{
+  background-color: rgba(27, 112, 137, 1);
+  border: 0; 
+  color: #fff;
+  width: 200px;
+  height: 50px;
+  margin: 20px;
+  padding: 0 20px;
+  font-size: 18px;
+  border-radius: 10px;
+}
+#to-do-form input::placeholder{
+  color: rgba(255,255,255,0.5);
+}
+#to-do-form input:focus{
+  outline: none;
+}
+#to-do-form button{
+  height: 50px;
+  width: 80px;
+  border-radius: 5px;
+  border: 0;
+  background-color:rgba(202, 156, 24, 1); 
+  cursor: pointer;
+}
+#to-do-form button:focus{
+  outline: none;
+}

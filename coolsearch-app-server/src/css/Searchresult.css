@@ -1,0 +1,40 @@
+.searchresult{
+    background-color: #3f3160;
+}
+.googleresult, .ddgresults
+{
+    display: inline-block;
+    margin: 0 auto;
+}
+
+section {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+
+.googleresult {
+    width: 50%;
+    height: 100%;
+    float: left;
+    margin: auto;
+}
+
+.ddgresults {
+    width: 50%;
+    height: 100%;
+    margin: auto;
+}
+
+.card {
+    height: 150px;
+}
+
+.wikicard {
+    height: auto;
+}
+
+.card-title1{
+    margin: 20px;
+    color: white;
+}
