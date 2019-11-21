@@ -5,15 +5,15 @@ A demo application that can aggregate search results from Google, DuckDuckGo and
 [Design diagram](https://github.com/kodefoundry/coolsearch/blob/master/docs/coolsearch-design.png)
 
 ### Screen Shots
-[Search Page](https://github.com/kodefoundry/coolsearch/blob/master/docs/Coolsearch.png)
+![Search Page](https://github.com/kodefoundry/coolsearch/blob/master/docs/Coolsearch.png = 800x530)
 
-[Search Listing](https://github.com/kodefoundry/coolsearch/blob/master/docs/Search%20Listing.png)
+![Search Listing](https://github.com/kodefoundry/coolsearch/blob/master/docs/Search%20Listing.png = 800x530)
 
-[Search Pending](https://github.com/kodefoundry/coolsearch/blob/master/docs/Search%20Pending.png)
+![Search Pending](https://github.com/kodefoundry/coolsearch/blob/master/docs/Search%20Pending.png = 800x530)
 
-[Search Results1](https://github.com/kodefoundry/coolsearch/blob/master/docs/Search%20Result1.png)
+![Search Results1](https://github.com/kodefoundry/coolsearch/blob/master/docs/Search%20Result1.png = 800x530)
 
-[Search Results2](https://github.com/kodefoundry/coolsearch/blob/master/docs/Search%20Result2.png)
+![Search Results2](https://github.com/kodefoundry/coolsearch/blob/master/docs/Search%20Result2.png = 800x530)
 
 
 #### Non docker setup.
