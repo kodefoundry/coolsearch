@@ -1,7 +1,10 @@
 # coolsearch
 A demo application that can aggregate search results from Google, DuckDuckGo and Wikipedia for a given search keyword
+** Design **
 
-Non docker setup.
+[Design diagram](https://github.com/kodefoundry/coolsearch/edit/master)
+
+** Non docker setup. **
 
 Note I have tested this way on a Mac Book Pro with 16Gb RAM.
 
@@ -57,7 +60,7 @@ Run the nodejs services by running 'npm start'
 Run the Python services by running 'python3 <python file name>' (Python 3 is required)
 Run the Golang services by running 'go run <go file name>'
 
-TODO
+** TODO **
 
 Create a startup.sh & shutdown.sh file that can startup and shutdown the services.
 Complete Dockerization and create docker-compose.yml to run all services together.
