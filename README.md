@@ -4,6 +4,14 @@ A demo application that can aggregate search results from Google, DuckDuckGo and
 
 [Design diagram](https://github.com/kodefoundry/coolsearch/blob/master/docs/coolsearch-design.png)
 
+### Screen Shots
+Search Page
+Search Listing
+Search Pending
+Search Results1
+Search Results2
+
+
 #### Non docker setup.
 
 Note I have tested this way on a Mac Book Pro with 16Gb RAM.
