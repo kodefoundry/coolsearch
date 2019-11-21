@@ -5,6 +5,7 @@ A demo application that can aggregate search results from Google, DuckDuckGo and
 [Design diagram](https://github.com/kodefoundry/coolsearch/blob/master/docs/coolsearch-design.png)
 
 ### Screen Shots
+<img src="https://github.com/kodefoundry/coolsearch/blob/master/docs/Coolsearch.png" width="800" height="530">
 ![Search Page](https://github.com/kodefoundry/coolsearch/blob/master/docs/Coolsearch.png = 800x530)
 
 ![Search Listing](https://github.com/kodefoundry/coolsearch/blob/master/docs/Search%20Listing.png = 800x530)
