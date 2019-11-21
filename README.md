@@ -1,10 +1,10 @@
 # coolsearch
 A demo application that can aggregate search results from Google, DuckDuckGo and Wikipedia for a given search keyword
-** Design **
+### Design 
 
-[Design diagram](https://github.com/kodefoundry/coolsearch/edit/master)
+[Design diagram](https://github.com/kodefoundry/coolsearch/blob/master/docs/coolsearch-design.png)
 
-** Non docker setup. **
+#### Non docker setup.
 
 Note I have tested this way on a Mac Book Pro with 16Gb RAM.
 
@@ -19,7 +19,9 @@ There are total 9 micro services as listed below
 8. coolsearch-result-notifier   - Nodejs
 9. coolsearch-app-server        - JS, Nodejs, React
 
-Dependencies - The following dependencies should be resolved before running the start.sh script
+##### Dependencies
+
+The following dependencies should be resolved before running the start.sh script
 
 librdkafka  - This is a dependency for confluentinc/confluent-kafka-go.v1/kafka
 
@@ -48,7 +50,7 @@ go get go.mongodb.org/mongo-driver/mongo
 go get gopkg.in/mgo.v2/bson
 go get github.com/go-chi/cors
 
-How to startup all the servics
+##### How to startup all the servics
 
 First startup the infrastructure containers using docker compose by running below command
 
@@ -60,7 +62,7 @@ Run the nodejs services by running 'npm start'
 Run the Python services by running 'python3 <python file name>' (Python 3 is required)
 Run the Golang services by running 'go run <go file name>'
 
-** TODO **
+##### TODO
 
 Create a startup.sh & shutdown.sh file that can startup and shutdown the services.
 Complete Dockerization and create docker-compose.yml to run all services together.
