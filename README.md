@@ -3,22 +3,28 @@ A demo application that can aggregate search results from Google, DuckDuckGo and
 ### Design 
 
 Design diagram
+
 <img src="https://github.com/kodefoundry/coolsearch/blob/master/docs/coolsearch-design.png" width="600" height="430">
 
 ### Screen Shots
 Search Page
+
 <img src="https://github.com/kodefoundry/coolsearch/blob/master/docs/Coolsearch.png" width="600" height="430">
 
 Search Listing
+
 <img src="https://github.com/kodefoundry/coolsearch/blob/master/docs/Search%20Listing.png" width="600" height="430">
 
 Search Pending
+
 <img src="https://github.com/kodefoundry/coolsearch/blob/master/docs/Search%20Pending.png" width="600" height="430">
 
 Search Results1
+
 <img src="https://github.com/kodefoundry/coolsearch/blob/master/docs/Search%20Result1.png" width="600" height="430">
 
 Search Results2
+
 <img src="https://github.com/kodefoundry/coolsearch/blob/master/docs/Search%20Result2.png" width="600" height="430">
 
 
