@@ -10,10 +10,13 @@ WORKDIR /go/src/github.com/kodefoundry/coolsearch/coolsearch-api
 RUN apk -U add ca-certificates
 RUN apk update && apk upgrade && apk add git bash build-base sudo
 RUN git clone https://github.com/edenhill/librdkafka.git && cd librdkafka && ./configure --prefix /usr && make -j && make install
-#RUN rm -rf librdkafka
+
 RUN go get ./
 
 RUN go build -o coolsearch-api
+
+RUN cd librdkafka && make uninstall
+RUN rm -rf librdkafka
 
 # Stage 2, statically bound app image is ready. We copy it to a alpine image and run it
 
