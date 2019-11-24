@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
@@ -49,6 +50,11 @@ func routes() *chi.Mux {
 	return router
 }
 
+var (
+	kafkaHost, isKafkaHost     = os.LookupEnv("KAFKA_HOST")
+	serviceHost, isServiceHost = os.LookupEnv("SERVICE_HOST")
+)
+
 func main() {
 	router := routes()
 	walkRoutes := func(method string, route string, handler http.Handler, middlewares ...func(http.Handler) http.Handler) error {
@@ -58,7 +64,16 @@ func main() {
 	if err := chi.Walk(router, walkRoutes); err != nil {
 		log.Panicf("Logging err: %s\n", err.Error())
 	}
-	log.Fatal(http.ListenAndServe(":8082", router))
+
+	if !isKafkaHost {
+		kafkaHost = "localhost:9092"
+	}
+
+	if !isServiceHost {
+		serviceHost = "localhost:8080"
+	}
+
+	log.Fatal(http.ListenAndServe(serviceHost, router))
 }
 
 func postNewQuery(w http.ResponseWriter, r *http.Request) {
@@ -73,7 +88,7 @@ func postNewQuery(w http.ResponseWriter, r *http.Request) {
 }
 
 func postSearchResult(topic string, data []byte) {
-	p, err := kafka.NewProducer(&kafka.ConfigMap{"bootstrap.servers": "localhost:9092"})
+	p, err := kafka.NewProducer(&kafka.ConfigMap{"bootstrap.servers": kafkaHost})
 	if err != nil {
 		panic(err)
 	}

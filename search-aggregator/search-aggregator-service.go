@@ -33,6 +33,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"os"
 	"strconv"
 
 	"github.com/go-redis/redis"
@@ -52,6 +53,11 @@ type redisData struct {
 	Results    string
 }
 
+var (
+	redisHost, isRedisHost = os.LookupEnv("REDIS_HOST")
+	kafkaHost, isKafkaHost = os.LookupEnv("KAFKA_HOST")
+)
+
 func (rd *redisData) addResult(result string) {
 	rd.NoOfResult++
 	rd.Results += "," + result
@@ -59,9 +65,17 @@ func (rd *redisData) addResult(result string) {
 
 func main() {
 
+	if !isRedisHost {
+		redisHost = "localhost:6379"
+	}
+
+	if !isKafkaHost {
+		kafkaHost = "localhost:9092"
+	}
+
 	// Prepare Kafka Consumer
 	kafkaConsumer, err := kafka.NewConsumer(&kafka.ConfigMap{
-		"bootstrap.servers": "localhost:9092",
+		"bootstrap.servers": kafkaHost,
 		"group.id":          "search-aggregator",
 		"auto.offset.reset": "earliest",
 	})
@@ -122,7 +136,7 @@ func main() {
 
 func redisClient() *redis.Client {
 	client := redis.NewClient(&redis.Options{
-		Addr:     "localhost:6379",
+		Addr:     redisHost,
 		Password: "",
 		DB:       0,
 	})
@@ -136,7 +150,7 @@ func redisClient() *redis.Client {
 }
 
 func postSearchResult(topic string, data string) {
-	p, err := kafka.NewProducer(&kafka.ConfigMap{"bootstrap.servers": "localhost:9092"})
+	p, err := kafka.NewProducer(&kafka.ConfigMap{"bootstrap.servers": kafkaHost})
 	if err != nil {
 		panic(err)
 	}

@@ -2,7 +2,12 @@ var kafka = require('kafka-node');
 var Client = kafka.KafkaClient;
 const io = require('socket.io')();
 
-var kclient = new Client({ kafkaHost: 'localhost:9092' });
+const kafkaHost = process.env.KAFKA_HOST
+if ('KAFKA_HOST' not in process.env){
+  kafkaHost = "localhost:9092"
+}
+
+var kclient = new Client({ kafkaHost: kafkaHost });
 
 io.on('connection', (socket) => {
   socket.on('subscribeToSearchResult', (inteval) => {

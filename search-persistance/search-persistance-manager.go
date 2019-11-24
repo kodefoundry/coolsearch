@@ -14,6 +14,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"os"
 	"time"
 
 	"go.mongodb.org/mongo-driver/mongo"
@@ -22,11 +23,24 @@ import (
 	"gopkg.in/mgo.v2/bson"
 )
 
+var (
+	mongoHost, isMongoHost = os.LookupEnv("MONGO_HOST")
+	kafkaHost, isKafkaHost = os.LookupEnv("KAFKA_HOST")
+)
+
 func main() {
+
+	if !isMongoHost {
+		mongoHost = "local://localhost:27017"
+	}
+
+	if !isKafkaHost {
+		kafkaHost = "localhost:9092"
+	}
 
 	// Prepare Kafka Consumer
 	kafkaConsumer, err := kafka.NewConsumer(&kafka.ConfigMap{
-		"bootstrap.servers": "localhost:9092",
+		"bootstrap.servers": kafkaHost,
 		"group.id":          "myGroup",
 		"auto.offset.reset": "earliest",
 	})
@@ -90,7 +104,7 @@ func storeData(collection *mongo.Collection, c chan interface{}) {
 func connectDB() (*mongo.Database, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
-	options := options.Client().ApplyURI("mongodb://mongo-server:27017")
+	options := options.Client().ApplyURI(mongoHost)
 	options.SetMaxPoolSize(3)
 	client, err := mongo.Connect(ctx, options)
 	if err != nil {

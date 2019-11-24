@@ -4,14 +4,20 @@ import requests
 import itertools
 from bs4 import BeautifulSoup
 import urllib.parse
+import os
+
+try:
+    kafkaHost = os.environ["KAFKA_HOST"]
+except KeyError as err:
+    kafkaHost = "localhost:9092"
 
 kafkaConsumer = Consumer({
-    'bootstrap.servers': 'localhost:9092',
+    'bootstrap.servers': kafkaHost,
     'group.id': 'ddg-search-provider',
     'auto.offset.reset': 'earliest'
 })
 
-kafkaProducer = Producer({'bootstrap.servers': 'localhost:9092'})
+kafkaProducer = Producer({'bootstrap.servers': kafkaHost})
 
 kafkaConsumer.subscribe(['search'])
 

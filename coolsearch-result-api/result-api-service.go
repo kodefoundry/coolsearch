@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/go-chi/cors"
 
@@ -15,10 +16,16 @@ import (
 )
 
 var (
+	serviceHost string = os.Getenv("SERVICE_HOST")
+	redisHost   string = os.Getenv("REDIS_HOST")
+)
+
+var (
 	rClient *redis.Client
 )
 
 func routes() *chi.Mux {
+
 	router := chi.NewRouter()
 
 	cors := cors.New(cors.Options{
@@ -50,6 +57,13 @@ func routes() *chi.Mux {
 }
 
 func main() {
+	if "" == serviceHost {
+		serviceHost = "localhost:8082"
+	}
+
+	if "" == redisHost {
+		redisHost = "localhost:6379"
+	}
 	rClient = redisClient()
 	router := routes()
 	walkRoutes := func(method string, route string, handler http.Handler, middlewares ...func(http.Handler) http.Handler) error {
@@ -59,7 +73,7 @@ func main() {
 	if err := chi.Walk(router, walkRoutes); err != nil {
 		log.Panicf("Logging err: %s\n", err.Error())
 	}
-	log.Fatal(http.ListenAndServe(":8080", router))
+	log.Fatal(http.ListenAndServe(serviceHost, router))
 }
 
 func handleSearchResult() *chi.Mux {
@@ -112,7 +126,7 @@ func getLast10Result(w http.ResponseWriter, r *http.Request) {
 
 func redisClient() *redis.Client {
 	client := redis.NewClient(&redis.Options{
-		Addr:     "localhost:6379",
+		Addr:     redisHost,
 		Password: "",
 		DB:       0,
 	})

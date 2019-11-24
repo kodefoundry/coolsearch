@@ -4,14 +4,20 @@ import requests
 import itertools
 import wikipedia
 import urllib.parse
+import os
+
+try:
+    kafkaHost = os.environ["KAFKA_HOST"]
+except KeyError as err:
+    kafkaHost = "localhost:9092"
 
 c = Consumer({
-    'bootstrap.servers': 'localhost:9092',
+    'bootstrap.servers': kafkaHost,
     'group.id': 'wiki-search-provider',
     'auto.offset.reset': 'earliest'
 })
 
-p = Producer({'bootstrap.servers': 'localhost:9092'})
+p = Producer({'bootstrap.servers': kafkaHost})
 
 c.subscribe(['search'])
 

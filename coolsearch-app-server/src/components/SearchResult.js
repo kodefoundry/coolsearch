@@ -2,10 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import '../css/Searchresult.css';
 
+const kafkaHost = process.env.SERVICE_HOST
+if ('SERVICE_HOST' not in process.env){
+  kafkaHost = "localhost:9092"
+}
+
 function componentDidMount(uuid, keyword) {
 const searchWord = <div><center><h1 className="card-title1">Search results for: {keyword}</h1></center></div>
     
-    fetch('http://localhost:8080/v1/api/searchresult/' + uuid)
+    fetch('http://' + kafkaHost + '/v1/api/searchresult/' + uuid)
     .then(res => res.json())
     .then((data) => { 
        var googleresult = data["google"].map((google) => (
