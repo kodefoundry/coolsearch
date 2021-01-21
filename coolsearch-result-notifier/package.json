@@ -10,6 +10,6 @@
   "license": "MIT",
   "dependencies": {
     "kafka-node": "^5.0.0",
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.4.0"
   }
 }
